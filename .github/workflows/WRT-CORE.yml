@@ -33,6 +33,7 @@ on:
         type: string
       WRT_SOURCE:
         required: false
+#        required: true
         type: string
       WRT_PACKAGE:
         required: false
@@ -46,6 +47,7 @@ on:
       WRT_ARCH:
         required: false
         type: string
+
 env:
   GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
   WRT_CONFIG: ${{inputs.WRT_CONFIG}}
@@ -57,6 +59,7 @@ env:
   WRT_PW: ${{inputs.WRT_PW}}
   WRT_REPO: ${{inputs.WRT_REPO}}
   WRT_BRANCH: ${{inputs.WRT_BRANCH}}
+#  WRT_SOURCE: ${{inputs.WRT_SOURCE}}
   WRT_PACKAGE: ${{inputs.WRT_PACKAGE}}
   WRT_TEST: ${{inputs.WRT_TEST}}
   WRT_DIR: 'wrt'
@@ -67,6 +70,7 @@ jobs:
   core:
     name: ${{inputs.WRT_SOURCE}}
     runs-on: ubuntu-24.04
+#    runs-on: ubuntu-latest
     steps:
       - name: Install BC
         env:
@@ -89,6 +93,7 @@ jobs:
 
       - name: Checkout Projects
         uses: actions/checkout@main
+
       - name: Initialization Environment
         env:
           DEBIAN_FRONTEND: noninteractive
@@ -101,6 +106,7 @@ jobs:
           sudo -E apt -yqq clean
           sudo -E apt -yqq install dos2unix libfuse-dev
           sudo bash $GITHUB_WORKSPACE/Scripts/init_build_environment.sh
+#          sudo bash -c 'bash <(curl -sL https://build-scripts.immortalwrt.org/init_build_environment.sh)'
           sudo -E systemctl daemon-reload
           sudo -E timedatectl set-timezone "Asia/Shanghai"
 #          sudo chown $USER:$GROUPS $GITHUB_WORKSPACE
@@ -114,6 +120,12 @@ jobs:
           echo "WRT_MARK=$(echo $GITHUB_REPOSITORY | cut -d '/' -f 1)" >> $GITHUB_ENV
           echo "WRT_VER=$(echo $WRT_REPO | cut -d '/' -f 4)-$WRT_BRANCH" >> $GITHUB_ENV
           echo "WRT_TARGET=$(grep -m 1 -oP '^CONFIG_TARGET_\K[\w]+(?=\=y)' ./Config/$WRT_CONFIG.txt | tr '[:lower:]' '[:upper:]')" >> $GITHUB_ENV
+
+#          echo "WRT_MARK=${GITHUB_REPOSITORY%%/*}" >> $GITHUB_ENV
+#          echo "WRT_INFO=${WRT_SOURCE%%/*}" >> $GITHUB_ENV
+#          echo "WRT_TARGET=$(grep -m 1 -oP '^CONFIG_TARGET_\K[\w]+(?=\=y)' ./Config/$WRT_CONFIG.txt)" >> $GITHUB_ENV
+#          echo "WRT_WIFI=wifi-yes" >> $GITHUB_ENV
+
           echo "WRT_KVER=none" >> $GITHUB_ENV
           echo "WRT_LIST=none" >> $GITHUB_ENV
 
@@ -129,6 +141,11 @@ jobs:
 
           cd ./wrt/ && echo "WRT_HASH=$(git log -1 --pretty=format:'%h')" >> $GITHUB_ENV
 
+          # GitHub Action 移除国内下载源
+#          PROJECT_MIRRORS_FILE="./scripts/projectsmirrors.json"
+#          if [ -f "$PROJECT_MIRRORS_FILE" ]; then
+#            sed -i '/.cn\//d; /tencent/d; /aliyun/d' "$PROJECT_MIRRORS_FILE"
+#          fi
 
 #############################测试代码####
       - name: Update Dae/Daed rules
@@ -141,8 +158,43 @@ jobs:
          ln -s dae daed
          ls -l
 
-
 #############################测试代码####
+
+#      - name: Check Caches
+#        id: check-cache
+#        if: env.WRT_TEST != 'true'
+#        uses: actions/cache@main
+#        with:
+#          key: ${{env.WRT_CONFIG}}-${{env.WRT_INFO}}-${{env.WRT_HASH}}
+#          restore-keys: ${{env.WRT_CONFIG}}-${{env.WRT_INFO}}
+#          path: |
+#            ./wrt/.ccache
+#            ./wrt/staging_dir/host*
+#            ./wrt/staging_dir/tool*
+#
+#      - name: Update Caches
+#        if: env.WRT_TEST != 'true'
+#        run: |
+#          if [ -d "./wrt/staging_dir" ]; then
+#            find "./wrt/staging_dir" -type d -name "stamp" -not -path "*target*" | while read -r DIR; do
+#              find "$DIR" -type f -exec touch {} +
+#            done
+#
+#            mkdir -p ./wrt/tmp && echo "1" > ./wrt/tmp/.build
+#
+#            echo "toolchain skiped done!"
+#          else
+#            echo "caches missed!"
+#          fi
+#
+#          if ${{steps.check-cache.outputs.cache-hit != 'true'}}; then
+#            CACHE_LIST=$(gh cache list --key "$WRT_CONFIG-$WRT_INFO" | cut -f 1)
+#            for CACHE_KEY in $CACHE_LIST; do
+#              gh cache delete $CACHE_KEY
+#            done
+#
+#            echo "caches cleanup done!"
+#          fi
 
       - name: Check Scripts
         run: |
@@ -166,8 +218,6 @@ jobs:
             done
           fi            
 
-
-
       - name: Update Feeds
         run: |
           cd ./wrt/
@@ -188,7 +238,13 @@ jobs:
           cd ./wrt/
           
           generate_config && cat .config
-          
+
+#          if [[ "${WRT_CONFIG,,}" == *"test"* ]]; then
+#            cat $GITHUB_WORKSPACE/Config/$WRT_CONFIG.txt >> .config
+#          else
+#            cat $GITHUB_WORKSPACE/Config/$WRT_CONFIG.txt $GITHUB_WORKSPACE/Config/GENERAL.txt >> .config
+#          fi
+
           $GITHUB_WORKSPACE/Scripts/Settings.sh
 
           make defconfig -j$(nproc) && make clean -j$(nproc)
@@ -235,6 +291,7 @@ jobs:
           cd ./wrt/ && mkdir ./upload/
 
           cp -f ./.config ./upload/Config-"$WRT_CONFIG"-"$WRT_VER"-"$WRT_DATE".txt
+#          cp -f ./.config ./upload/Config-"$WRT_CONFIG"-"$WRT_INFO"-"$WRT_BRANCH"-"$WRT_DATE".txt
 
           if [[ $WRT_TEST != 'true' ]]; then
             echo "WRT_KVER=$(find ./bin/targets/ -type f -name "*.manifest" -exec grep -oP '^kernel - \K[\d\.]+' {} \;)" >> $GITHUB_ENV
@@ -246,6 +303,7 @@ jobs:
               EXT=$(basename $FILE | cut -d '.' -f 2-)
               NAME=$(basename $FILE | cut -d '.' -f 1 | grep -io "\($WRT_TARGET\).*")
               NEW_FILE="$WRT_VER"-"$NAME"-"$WRT_DATE"."$EXT"
+#               NEW_FILE="$WRT_INFO"-"$WRT_BRANCH"-"$WRT_WIFI"-"$NAME"-"$WRT_DATE"."$EXT"
               mv -f $FILE ./upload/$NEW_FILE
             done
 
@@ -256,8 +314,10 @@ jobs:
 
       - name: Release Firmware
         uses: softprops/action-gh-release@v2
+#        uses: softprops/action-gh-release@master
         with:
           tag_name: ${{env.CI_NAME}}-${{env.WRT_CONFIG}}_${{env.WRT_DATE}}
+#          tag_name: ${{env.WRT_CONFIG}}-${{env.WRT_INFO}}-${{env.WRT_BRANCH}}-${{env.WRT_DATE}}
           files: ./wrt/upload/*.*
           body: |
             京东云亚瑟AX1800pro专属固件包
@@ -281,4 +341,3 @@ jobs:
 
             内核版本：${{env.WRT_KVER}}
             插件列表：${{env.WRT_LIST}}
-

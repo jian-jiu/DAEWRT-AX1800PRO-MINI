@@ -1,5 +1,5 @@
-# DAEWRT-AX1800PRO-MINI
-京东云亚瑟AX1800pro专属固件包  MINI版
+# DAEWRT-AX1800PRO
+京东云亚瑟AX1800pro专属固件包
   
   超强精简，使用luci-app-dae、samba4、openlist2、tailscale，内存占用仅65%。
 
@@ -13,3 +13,5 @@
   
   全系带开源硬件加速。\
   一键加群👉：<a target="_blank" href="https://qm.qq.com/cgi-bin/qm/qr?k=6JLaTPbGP2Qc43A06HiIP7w-vCVrR7Iu&jump_from=webapi&authKey=aGTurX/4rsPB7hTWBLyXGQyzsYUdTyrjKXe7xwX0Dm3gqICCnIug5MkSoeeKqG0k"><img border="0" src="//pub.idqqimg.com/wpa/images/group.png" alt="GHNERCH-AX1800PRO交流群" title="GHNERCH-AX1800PRO交流群"></a>
+
+[同步云编译](https://github.com/VIKINGYFY/OpenWRT-CI.git)
