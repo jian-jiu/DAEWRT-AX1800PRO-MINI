@@ -69,7 +69,6 @@ env:
 jobs:
   core:
     name: ${{inputs.WRT_SOURCE}}
-#    runs-on: ubuntu-24.04
     runs-on: ubuntu-latest
     steps:
       - name: Install BC
@@ -233,12 +232,6 @@ jobs:
           
           generate_config && cat .config
 
-#          if [[ "${WRT_CONFIG,,}" == *"test"* ]]; then
-#            cat $GITHUB_WORKSPACE/Config/$WRT_CONFIG.txt >> .config
-#          else
-#            cat $GITHUB_WORKSPACE/Config/$WRT_CONFIG.txt $GITHUB_WORKSPACE/Config/GENERAL.txt >> .config
-#          fi
-
           $GITHUB_WORKSPACE/Scripts/Settings.sh
 
           make defconfig -j$(nproc) && make clean -j$(nproc)
@@ -305,8 +298,7 @@ jobs:
           fi
 
       - name: Release Firmware
-        uses: softprops/action-gh-release@v2
-#        uses: softprops/action-gh-release@master
+        uses: softprops/action-gh-release@master
         with:
           tag_name: ${{env.CI_NAME}}-${{env.WRT_CONFIG}}_${{env.WRT_DATE}}
           files: ./wrt/upload/*.*
