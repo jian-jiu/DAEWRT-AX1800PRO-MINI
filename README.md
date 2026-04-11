@@ -1,7 +1,7 @@
 # DAEWRT-AX1800PRO
 京东云亚瑟AX1800pro专属固件包
   
-  超强精简，使用luci-app-dae、samba4、openlist2、tailscale，内存占用仅65%。
+  超强精简，内存占用仅65%。
 
   固件集成增强版geoip.dat、geosite.dat,开箱即用，正确配置Dae不会报错
 
