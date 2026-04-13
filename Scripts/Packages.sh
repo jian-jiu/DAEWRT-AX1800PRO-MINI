@@ -73,7 +73,7 @@ UPDATE_PACKAGE "destan19" "destan19/OpenAppFilter" "master" "" "luci-app-oaf oaf
 UPDATE_PACKAGE "luci-app-dae" "QiuSimons/luci-app-dae" "kix"
 #UPDATE_PACKAGE "luci-app-pushbot" "zzsj0928/luci-app-pushbot" "master"
 #UPDATE_PACKAGE "luci-app-easytier" "EasyTier/luci-app-easytier" "main"
-#UPDATE_PACKAGE "openlist2" "sbwml/luci-app-openlist2" "main"
+UPDATE_PACKAGE "openlist2" "sbwml/luci-app-openlist2" "main"
 #UPDATE_PACKAGE "quickfile" "sbwml/luci-app-quickfile" "main"
 
 #UPDATE_PACKAGE "diskman" "lisaac/luci-app-diskman" "master"
