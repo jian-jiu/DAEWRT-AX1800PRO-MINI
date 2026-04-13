@@ -23,6 +23,10 @@ jobs:
   auto_clean:
     runs-on: ubuntu-latest
     steps:
+      - name: Simple test
+        run: |
+          echo "event name is:" ${{ github.event_name }}
+
       - name: Delete old Releases and Workflows
         uses: ophub/delete-releases-workflows@main
         with:
