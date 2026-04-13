@@ -2,9 +2,9 @@ name: Cache-Clean
 
 on:
   #自动清理
-  schedule:
+#  schedule:
     #每周一4:00
-    - cron: 0 20 * * 0
+#    - cron: 0 20 * * 0
     #每天4:00
     #- cron: 0 20 * * *
   #手动清理
