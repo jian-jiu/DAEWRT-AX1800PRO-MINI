@@ -34,13 +34,13 @@ jobs:
       matrix:
         #CONFIG: [IPQ807X-NOWIFI, IPQ807X-WIFI,IPQ60XX-NOWIFI, IPQ60XX-WIFI]
         CONFIG: [IPQ60XX-WIFI]
-#LiBwrt        
+#LiBwrt
         SOURCE: [LiBwrt/openwrt-6.x]
         BRANCH: [main-nss]
 
 #immortalwrt
         #SOURCE: [VIKINGYFY/immortalwrt]
-        #BRANCH: [main]        
+        #BRANCH: [main]
 
     #调用公用编译核心WRT-CORE.yml
     uses: ./.github/workflows/WRT-CORE.yml
