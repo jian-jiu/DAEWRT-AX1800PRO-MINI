@@ -20,4 +20,4 @@
 
 只保留 dae
 增加 upnp filemanager(文件管理) ttyd(终端)
-openclash oaf(应用过滤) docker
+openclash oaf(应用过滤)
