@@ -15,6 +15,7 @@
   一键加群👉：<a target="_blank" href="https://qm.qq.com/cgi-bin/qm/qr?k=6JLaTPbGP2Qc43A06HiIP7w-vCVrR7Iu&jump_from=webapi&authKey=aGTurX/4rsPB7hTWBLyXGQyzsYUdTyrjKXe7xwX0Dm3gqICCnIug5MkSoeeKqG0k"><img border="0" src="//pub.idqqimg.com/wpa/images/group.png" alt="GHNERCH-AX1800PRO交流群" title="GHNERCH-AX1800PRO交流群"></a>
 
 ## 修改
+同步修改 Update WRT-CORE.yml GHNERCH* 4-20 03:40
 [同步原云编译](https://github.com/VIKINGYFY/OpenWRT-CI.git)
 
 只保留 dae
