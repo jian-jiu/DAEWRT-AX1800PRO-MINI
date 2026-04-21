@@ -14,4 +14,9 @@
   全系带开源硬件加速。\
   一键加群👉：<a target="_blank" href="https://qm.qq.com/cgi-bin/qm/qr?k=6JLaTPbGP2Qc43A06HiIP7w-vCVrR7Iu&jump_from=webapi&authKey=aGTurX/4rsPB7hTWBLyXGQyzsYUdTyrjKXe7xwX0Dm3gqICCnIug5MkSoeeKqG0k"><img border="0" src="//pub.idqqimg.com/wpa/images/group.png" alt="GHNERCH-AX1800PRO交流群" title="GHNERCH-AX1800PRO交流群"></a>
 
-[同步云编译](https://github.com/VIKINGYFY/OpenWRT-CI.git)
+## 修改
+[同步原云编译](https://github.com/VIKINGYFY/OpenWRT-CI.git)
+
+只保留 dae
+增加 upnp filemanager(文件管理) ttyd(终端)
+openclash oaf(应用过滤) docker
