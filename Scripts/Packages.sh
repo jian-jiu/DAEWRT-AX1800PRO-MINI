@@ -79,6 +79,10 @@ UPDATE_PACKAGE "luci-app-dae" "QiuSimons/luci-app-dae" "kix"
 #UPDATE_PACKAGE "diskman" "lisaac/luci-app-diskman" "master"
 #UPDATE_PACKAGE "fancontrol" "rockjake/luci-app-fancontrol" "main"
 
+# aurora 主题
+#UPDATE_PACKAGE "aurora" "eamonxg/luci-theme-aurora" "master"
+#UPDATE_PACKAGE "aurora-config" "eamonxg/luci-app-aurora-config" "master"
+
 #更新软件包版本
 UPDATE_VERSION() {
 	local PKG_NAME=$1
