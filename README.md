@@ -19,7 +19,10 @@
 
 ## 修改
 同步修改 Update WRT-CORE.yml GHNERCH* 4-20 03:40
+项目调整 VIKING 2026/5/4 17:01
 [同步原云编译](https://github.com/VIKINGYFY/OpenWRT-CI.git)
+
+Rename LICENSE.txt to LICENSE GHNERCH* 05-06 14:41
 
 只保留 dae
 增加 upnp filemanager(文件管理) ttyd(终端)

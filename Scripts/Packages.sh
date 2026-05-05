@@ -61,11 +61,9 @@ UPDATE_PACKAGE "openclash" "vernesong/OpenClash" "master"
 # UPDATE_PACKAGE "ddns-go" "sirpdboy/luci-app-ddns-go" "main"
 # UPDATE_PACKAGE "gecoosac" "laipeng668/luci-app-gecoosac" "main"
 # UPDATE_PACKAGE "mosdns" "sbwml/luci-app-mosdns" "v5" "" "v2dat"
-# UPDATE_PACKAGE "netspeedtest" "sirpdboy/netspeedtest" "main" "" "homebox speedtest"
 # UPDATE_PACKAGE "partexp" "sirpdboy/luci-app-partexp" "main"
 # UPDATE_PACKAGE "qbittorrent" "sbwml/luci-app-qbittorrent" "master" "" "qt6base qt6tools rblibtorrent"
 # UPDATE_PACKAGE "qmodem" "FUjr/QModem" "main"
-#UPDATE_PACKAGE "viking" "VIKINGYFY/packages" "main" "" "luci-app-timewol luci-app-wolplus"
 UPDATE_PACKAGE "destan19" "destan19/OpenAppFilter" "master" "" "luci-app-oaf oaf open-app-filter"
 # UPDATE_PACKAGE "vnt" "lmq8267/luci-app-vnt" "main"
 #UPDATE_PACKAGE "luci-app-tailscale" "asvow/luci-app-tailscale" "main"
@@ -76,12 +74,23 @@ UPDATE_PACKAGE "luci-app-dae" "QiuSimons/luci-app-dae" "kix"
 #UPDATE_PACKAGE "openlist2" "sbwml/luci-app-openlist2" "main"
 #UPDATE_PACKAGE "quickfile" "sbwml/luci-app-quickfile" "main"
 
-#UPDATE_PACKAGE "diskman" "lisaac/luci-app-diskman" "master"
 #UPDATE_PACKAGE "fancontrol" "rockjake/luci-app-fancontrol" "main"
 
 # aurora 主题
 #UPDATE_PACKAGE "aurora" "eamonxg/luci-theme-aurora" "master"
 #UPDATE_PACKAGE "aurora-config" "eamonxg/luci-app-aurora-config" "master"
+
+# ----- yc的
+# 磁盘管理
+#UPDATE_PACKAGE "diskman" "lisaac/luci-app-diskman" "master"
+#UPDATE_PACKAGE "diskman" "sbwml/luci-app-diskman" "main"
+#UPDATE_PACKAGE "diskmanager" "4IceG/luci-app-mini-diskmanager" "main"
+
+#UPDATE_PACKAGE "easytier" "EasyTier/luci-app-easytier" "main"
+#UPDATE_PACKAGE "netspeedtest" "sirpdboy/netspeedtest" "main" "" "homebox ookla-speedtest"
+#UPDATE_PACKAGE "netwizard" "sirpdboy/luci-app-netwizard" "main"
+#UPDATE_PACKAGE "timecontrol" "sirpdboy/luci-app-timecontrol" "main"
+#UPDATE_PACKAGE "viking" "VIKINGYFY/packages" "main" "" "gecoosac luci-app-timewol luci-app-wolplus"
 
 #更新软件包版本
 UPDATE_VERSION() {
