@@ -14,13 +14,13 @@
 # CONFIG_PACKAGE_luci-app-pushbot=y
 
 # simple
-CONFIG_PACKAGE_luci-app-upnp=y
+#CONFIG_PACKAGE_luci-app-upnp=y
 CONFIG_PACKAGE_luci-app-openclash=y
 # CONFIG_PACKAGE_luci-app-docker=y
 # CONFIG_PACKAGE_luci-app-dockerman=y
-CONFIG_PACKAGE_oaf=y
-CONFIG_PACKAGE_open-app-filter=y
-CONFIG_PACKAGE_luci-app-oaf=y
+#CONFIG_PACKAGE_oaf=y
+#CONFIG_PACKAGE_open-app-filter=y
+#CONFIG_PACKAGE_luci-app-oaf=y
 
 ## docker
 # CONFIG_PACKAGE_kmod-ip6tables=y
@@ -170,11 +170,11 @@ CONFIG_PACKAGE_bind-nslookup=y
 # CONFIG_PACKAGE_kmod-veth=y
 # CONFIG_PACKAGE_kmod-inet-mptcp-diag=y
 
-CONFIG_PACKAGE_kmod-nf-nat6=y # NAT6 支持
-CONFIG_PACKAGE_kmod-nft-arp=y # ARP 防火墙规则
-CONFIG_PACKAGE_kmod-nft-connlimit=y # 连接限制
-CONFIG_PACKAGE_kmod-nft-dup-inet=y # 数据包复制
-CONFIG_PACKAGE_kmod-nft-xfrm=y # IPSec 加速
+#CONFIG_PACKAGE_kmod-nf-nat6=y # NAT6 支持
+#CONFIG_PACKAGE_kmod-nft-arp=y # ARP 防火墙规则
+#CONFIG_PACKAGE_kmod-nft-connlimit=y # 连接限制
+#CONFIG_PACKAGE_kmod-nft-dup-inet=y # 数据包复制
+#CONFIG_PACKAGE_kmod-nft-xfrm=y # IPSec 加速
 
 # CONFIG_PACKAGE_kmod-usb-net-asix=y
 # CONFIG_PACKAGE_kmod-usb-net-asix-ax88179=y
